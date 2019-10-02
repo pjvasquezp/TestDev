@@ -15,6 +15,7 @@ namespace Wcf_PJ
     // NOTE: In order to launch WCF Test Client for testing this service, please select Serv-PJ.svc or Serv-PJ.svc.cs at the Solution Explorer and start debugging.
     public class Serv_PJ : IServ_PJ
 
+
     {
         public void DACliente()
         {
@@ -73,6 +74,15 @@ namespace Wcf_PJ
 
             return Mensaje;
            
+        }
+
+        public List<Customer> ListarCustomer()
+        {
+
+            DBTrasaccion ObTransSQL = new DBTrasaccion();
+            List<Customer> ListaClientes = ObTransSQL.ListarCustomers();
+  
+            return ListaClientes;
         }
     }
 }

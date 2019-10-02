@@ -33,14 +33,14 @@ namespace PJ.DataLayer
 
                 cmd.Transaction = ConClass.Tran;
 
-                cmd.CommandText = "Insert into Customers (CustomerName, Contact, Email, Rif) " +
-                    "Values  ('" + ObjCustomer.CustomerName + "','" + ObjCustomer.Contact + "', '" + ObjCustomer.Email + "', '" + ObjCustomer.Rif + "')";
-
-                ConClass.Open();                
-
-                cmd.Transaction = ConClass.Con.BeginTransaction();
+                ConClass.Open();
 
                 existe = ValidarRif(ObjCustomer.Rif, cmd);
+
+                cmd.CommandText = "Insert into Customers (CustomerName, Contact, Email, Rif) " +
+                    "Values  ('" + ObjCustomer.CustomerName + "','" + ObjCustomer.Contact + "', '" + ObjCustomer.Email + "', '" + ObjCustomer.Rif + "')";
+                                          
+                cmd.Transaction = ConClass.Con.BeginTransaction();
 
                 if (existe)
                 {
@@ -99,7 +99,7 @@ namespace PJ.DataLayer
                 }
                 dr.Close();
 
-                if (ExisCustomer.CustomerId.ToString() == "")
+                if (ExisCustomer.CustomerName != null)
                 {
                     Result = true;
                 }
@@ -115,7 +115,50 @@ namespace PJ.DataLayer
             return Result;
         }
 
+        public List<Customer>ListarCustomers()
+        {
+            List<Customer> ListaCliente = new List<Customer>();
+            var ConClass = new DaConnectSQL();
 
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = ConClass.DASQLConnection();
+
+            cmd.CommandType = CommandType.Text;
+
+            ConClass.Open();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cmd.Connection;
+            cmd.CommandText = "SELECT * FROM Customers ";
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            try
+            {
+                while (dr.Read())
+                {
+                    {
+                        Customer CLiente = new Customer();
+                        CLiente.CustomerId = dr.GetInt32(0);
+                        CLiente.CustomerName = dr.GetString(1);
+                        CLiente.Contact = dr.GetString(2);
+                        CLiente.Email = dr.GetString(3);
+                        CLiente.Rif = dr.GetString(4);
+
+                        ListaCliente.Add(CLiente);
+                    }
+                }
+                dr.Close();
+            }
+
+
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error en la transaccion " + ex.Message);
+            }
+            return ListaCliente;
+        }
     }
 
 
