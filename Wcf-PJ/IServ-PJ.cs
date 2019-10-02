@@ -20,5 +20,8 @@ namespace Wcf_PJ
 
         [OperationContract]
         string CreateCustomer(String CustomerName, String Contact, String Email, string Rif);
+
+        [OperationContract]
+        List<Customer>ListarCustomer();
     }
 }
