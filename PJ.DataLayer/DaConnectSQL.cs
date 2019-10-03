@@ -11,7 +11,9 @@ namespace PJ.DataLayer
     public class DaConnectSQL
     {
         public SqlConnection Con = new SqlConnection();
+
         public SqlTransaction Tran;
+
         public DaConnectSQL()
         {
             DASQLConnection();

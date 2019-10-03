@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
@@ -16,12 +17,9 @@ namespace Wcf_PJ
         bool ValidaConexionSQL();
 
         [OperationContract]
-        int Sumatoria(int A, int B);
-
-        [OperationContract]
         string CreateCustomer(String CustomerName, String Contact, String Email, string Rif);
 
         [OperationContract]
-        List<Customer>ListarCustomer();
+        List<Customer>ListarCustomer([Optional] string Rif);
     }
 }

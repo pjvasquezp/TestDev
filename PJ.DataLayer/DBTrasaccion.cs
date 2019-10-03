@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,19 @@ namespace PJ.DataLayer
         public void DACliente()
         {
             DaConnectSQL DASQLConnection = new DaConnectSQL();
+        }
+
+        public bool ValidaConexionSQL()
+        {
+            bool Exitosa = false;
+            var ConClass = new DaConnectSQL();
+
+            ConClass.Open();
+
+            if (ConClass.Con.State == ConnectionState.Open)
+                Exitosa = true;
+
+            return Exitosa;
         }
 
         public string CreateCustomer(Customer ObjCustomer)
@@ -115,10 +129,12 @@ namespace PJ.DataLayer
             return Result;
         }
 
-        public List<Customer>ListarCustomers()
+        public List<Customer>ListarCustomers([Optional] string Rif)
         {
             List<Customer> ListaCliente = new List<Customer>();
+            bool Result = false;
             var ConClass = new DaConnectSQL();
+            bool Errores = false;
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = ConClass.DASQLConnection();
@@ -129,8 +145,17 @@ namespace PJ.DataLayer
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cmd.Connection;
-            cmd.CommandText = "SELECT * FROM Customers ";
 
+            if (Rif == null)
+            {
+                cmd.CommandText = "SELECT * FROM Customers ";
+            }
+
+            else
+            {
+                cmd.CommandText = "SELECT * FROM Customers where RIF =  '" + Rif + "' ";
+            }
+           
             SqlDataReader dr = cmd.ExecuteReader();
 
             try

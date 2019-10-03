@@ -8,48 +8,27 @@ using System.Configuration;
 using PJ.DataLayer;
 using System.Data;
 using PJ.BusinessEntity;
+using System.Runtime.InteropServices;
+using PJ.BusinessLogic;
 
 namespace Wcf_PJ
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Serv_PJ" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select Serv-PJ.svc or Serv-PJ.svc.cs at the Solution Explorer and start debugging.
     public class Serv_PJ : IServ_PJ
-
-
     {
-        public void DACliente()
-        {
-            DaConnectSQL DASQLConnection = new DaConnectSQL();
-        }
-     
-
+        FuncionesLogicas Funciones = new FuncionesLogicas();
+       
         public bool ValidaConexionSQL()
         {
-            bool Exitosa = false;
-            var ConClass = new DaConnectSQL();
-          
-            ConClass.Open();
-            
-            if (ConClass.Con.State == ConnectionState.Open)
-                Exitosa = true;
-      
-
+            bool Exitosa = Funciones.ValidaConexionSQL();                       
 
             return Exitosa;
         }
 
-
-        public int Sumatoria(int A, int B)
-        {
-            int Resultado = A + B;
-
-            return Resultado;
-            
-        }
-
         public string CreateCustomer(string CustomerName, string Contact, string Email, string Rif)
         {
-            DBTrasaccion ObTransSQL = new DBTrasaccion();
+            
             string Resultado = "Error";
             string Mensaje = "";
 
@@ -60,27 +39,15 @@ namespace Wcf_PJ
                 Rif = Rif
             };
 
-            Resultado = ObTransSQL.CreateCustomer(ObjeCustomer);
-
-            if (Resultado == "Exitoso")
-            {
-                Mensaje = "Registro creado correctamente";
-            }
-
-            else
-            {
-                Mensaje = "NO se pudo ingresar el Cliente " + Resultado.ToString();
-            }
+            Resultado = Funciones.CreateCustomer(ObjeCustomer);
 
             return Mensaje;
            
         }
 
-        public List<Customer> ListarCustomer()
-        {
-
-            DBTrasaccion ObTransSQL = new DBTrasaccion();
-            List<Customer> ListaClientes = ObTransSQL.ListarCustomers();
+        public List<Customer> ListarCustomer([Optional] string Rif)
+        {                       
+            List<Customer> ListaClientes = Funciones.ListarCustomers(Rif);
   
             return ListaClientes;
         }
