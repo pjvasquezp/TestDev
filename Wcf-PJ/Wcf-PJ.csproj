@@ -87,6 +87,10 @@
       <Project>{D1CE2476-843E-46FC-939B-FCEC8A0887B2}</Project>
       <Name>PJ.BusinessEntity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PJ.BusinessLogic\PJ.BusinessLogic.csproj">
+      <Project>{e1620e69-d38f-4bca-a605-a737d063634e}</Project>
+      <Name>PJ.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PJ.DataLayer\PJ.DataLayer.csproj">
       <Project>{531a1ed6-5280-4c44-a026-460018bca40f}</Project>
       <Name>PJ.DataLayer</Name>
