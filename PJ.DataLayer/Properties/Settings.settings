@@ -5,5 +5,32 @@
     <Setting Name="ConnStringSQL" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Data Source=SAP-PC\SAP2014;Initial Catalog=On4x;User ID=sa;Password=pass;Pooling=False</Value>
     </Setting>
+    <Setting Name="ConnStringORA" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=192.168.250.55;User Id=sa;Password=pass;</Value>
+    </Setting>
+    <Setting Name="DriverDB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ORACLE</Value>
+    </Setting>
+    <Setting Name="ConnORAEAMCURS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=172.20.5.62)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=EAMCURS)));User Id=EAM;Password=EAM;</Value>
+    </Setting>
+    <Setting Name="HOST" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">172.20.5.62</Value>
+    </Setting>
+    <Setting Name="PORT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1521</Value>
+    </Setting>
+    <Setting Name="SERVICE_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EAMCURS</Value>
+    </Setting>
+    <Setting Name="UserId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EAM</Value>
+    </Setting>
+    <Setting Name="PasswordSRV" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EAM</Value>
+    </Setting>
+    <Setting Name="PasswordPRD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EAM</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

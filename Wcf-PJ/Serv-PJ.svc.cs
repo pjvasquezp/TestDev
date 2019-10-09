@@ -45,11 +45,20 @@ namespace Wcf_PJ
            
         }
 
-        public List<Customer> ListarCustomer([Optional] string Rif)
+        public List<Customer>ListarCustomer([Optional] string Rif)
         {                       
             List<Customer> ListaClientes = Funciones.ListarCustomers(Rif);
   
             return ListaClientes;
+        }
+
+        public Customer ValidarCliente(string Rif)
+        {
+
+            Customer DevCustomer = Funciones.ListarCustomers(Rif).FirstOrDefault();
+
+            return DevCustomer;
+
         }
     }
 }

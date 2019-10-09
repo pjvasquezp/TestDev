@@ -145,7 +145,7 @@ namespace PJ.DataLayer
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cmd.Connection;
-
+            
             if (Rif == null)
             {
                 cmd.CommandText = "SELECT * FROM Customers ";

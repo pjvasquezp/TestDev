@@ -41,6 +41,7 @@ namespace PJ.DataLayer
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error en la Conexion al Servidor de ORACLE " + ex.Message);
             }
         }
         public void Close()
@@ -51,6 +52,7 @@ namespace PJ.DataLayer
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error en la Conexion al Servidor de ORACLE " + ex.Message);
             }
         }
         public SqlTransaction BeginTransaction()

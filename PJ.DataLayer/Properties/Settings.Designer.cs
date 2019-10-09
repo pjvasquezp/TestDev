@@ -32,5 +32,88 @@ namespace PJ.DataLayer.Properties {
                 return ((string)(this["ConnStringSQL"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.250.55;User Id=sa;Password=pass;")]
+        public string ConnStringORA {
+            get {
+                return ((string)(this["ConnStringORA"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ORACLE")]
+        public string DriverDB {
+            get {
+                return ((string)(this["DriverDB"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=172.20.5.62)(" +
+            "PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=EAMCURS)));User Id=EAM" +
+            ";Password=EAM;")]
+        public string ConnORAEAMCURS {
+            get {
+                return ((string)(this["ConnORAEAMCURS"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("172.20.5.62")]
+        public string HOST {
+            get {
+                return ((string)(this["HOST"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1521")]
+        public string PORT {
+            get {
+                return ((string)(this["PORT"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("EAMCURS")]
+        public string SERVICE_NAME {
+            get {
+                return ((string)(this["SERVICE_NAME"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("EAM")]
+        public string UserId {
+            get {
+                return ((string)(this["UserId"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("EAM")]
+        public string PasswordSRV {
+            get {
+                return ((string)(this["PasswordSRV"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("EAM")]
+        public string PasswordPRD {
+            get {
+                return ((string)(this["PasswordPRD"]));
+            }
+        }
     }
 }

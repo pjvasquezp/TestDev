@@ -21,5 +21,8 @@ namespace Wcf_PJ
 
         [OperationContract]
         List<Customer>ListarCustomer([Optional] string Rif);
+
+        [OperationContract]
+        Customer ValidarCliente(string Rif);
     }
 }
