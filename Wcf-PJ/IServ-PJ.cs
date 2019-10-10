@@ -24,5 +24,8 @@ namespace Wcf_PJ
 
         [OperationContract]
         Customer ValidarCliente(string Rif);
+
+        [OperationContract]
+        int Sumas(int A,int B);
     }
 }

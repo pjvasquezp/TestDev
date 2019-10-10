@@ -16,6 +16,7 @@ namespace Wcf_PJ
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Serv_PJ" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select Serv-PJ.svc or Serv-PJ.svc.cs at the Solution Explorer and start debugging.
     public class Serv_PJ : IServ_PJ
+
     {
         FuncionesLogicas Funciones = new FuncionesLogicas();
        
@@ -59,6 +60,13 @@ namespace Wcf_PJ
 
             return DevCustomer;
 
+        }
+
+        public int Sumas(int A, int B)
+        {
+            int resultado = A +B ;
+
+            return resultado;
         }
     }
 }
