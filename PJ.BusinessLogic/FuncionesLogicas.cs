@@ -12,11 +12,11 @@ namespace PJ.BusinessLogic
 {
     public class FuncionesLogicas
     {
-        DBTrasaccion transaccion = new DBTrasaccion();
+        DBTrasaccion ObjTransaccion = new DBTrasaccion();
 
         public bool ValidaConexionSQL()
         {
-            bool Exitosa = transaccion.ValidaConexionSQL();
+            bool Exitosa = ObjTransaccion.ValidaConexionSQL();
 
             return Exitosa;
         }
@@ -26,41 +26,37 @@ namespace PJ.BusinessLogic
 
             //transaccion.ListarCustomers();
 
-            var queryCustomers = from cust in transaccion.ListarCustomers()
+            var queryCustomers = from cust in ObjTransaccion.ListarCustomers()
                                  where cust.Rif == Rif
                                  select cust;
                                                                       
             return queryCustomers.FirstOrDefault();
         }     
 
-        public string CreateCustomer(Customer ObjeCustomer)
+        public string CreateCustomer(Customer ObjCustomer)
         {
             
             string Resultado = "Error";
-            string Mensaje = "";
-                       
 
-            Resultado = transaccion.CreateCustomer(ObjeCustomer);
+            Resultado = ObjTransaccion.CreateCustomer(ObjCustomer);            
 
-            if (Resultado == "Exitoso")
-            {
-                Mensaje = "Registro creado correctamente";
-            }
-
-            else
-            {
-                Mensaje = "NO se pudo ingresar el Cliente " + Resultado.ToString();
-            }
-
-            return Mensaje;
-
+            return Resultado;
         }
 
         public List<Customer> ListarCustomers([Optional] string Rif)
         {
-            List<Customer> ListaClientes = transaccion.ListarCustomers(Rif);
+            List<Customer> ListaClientes = ObjTransaccion.ListarCustomers(Rif);
 
             return ListaClientes;
         }
+
+        public ListCustomers ListAllCustomers()
+        {
+            ListCustomers ListaClientes = ObjTransaccion.ListAllCustomers();
+
+            return ListaClientes;
+        }
+
+        
     }
 }

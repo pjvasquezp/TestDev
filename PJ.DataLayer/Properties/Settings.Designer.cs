@@ -25,16 +25,6 @@ namespace PJ.DataLayer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SAP-PC\\SAP2014;Initial Catalog=On4x;User ID=sa;Password=pass;Pooling=" +
-            "False")]
-        public string ConnStringSQL {
-            get {
-                return ((string)(this["ConnStringSQL"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.250.55;User Id=sa;Password=pass;")]
         public string ConnStringORA {
             get {
@@ -113,6 +103,16 @@ namespace PJ.DataLayer.Properties {
         public string PasswordPRD {
             get {
                 return ((string)(this["PasswordPRD"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DSNT-DEV-SRV;Initial Catalog=PJVASQUEZ;User ID=sa;Password=B1Admin;Po" +
+            "oling=False")]
+        public string ConnStringSQL {
+            get {
+                return ((string)(this["ConnStringSQL"]));
             }
         }
     }

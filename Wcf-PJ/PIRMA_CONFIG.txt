@@ -1,0 +1,19 @@
+-------------------------------------------------------
+-    Base Datos Principal (Panel de Control) de RED   -
+-------------------------------------------------------
+1.DSNT-DEV-SRV
+2.INTEGRADO_CFDI
+3.sa
+4.B1Admin
+5.P10000
+
+1.DSNT-DEV-SRV
+2.PanelControl_D
+3.sa
+4.B1Admin
+5.P10000
+
+
+
+
+

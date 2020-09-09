@@ -61,6 +61,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PIRMA_CONFIG.txt" />
     <Content Include="Serv-PJ.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -73,8 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="xml\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -83,6 +87,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ByDIntegrador\ByDIntegrador\ByDIntegrador.csproj">
+      <Project>{2d1c909c-6b35-4511-bea3-7870ca9d4b9b}</Project>
+      <Name>ByDIntegrador</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CFDIMexico\CFDIMexico.csproj">
+      <Project>{6a1e9c4f-6b6a-4c6f-a402-ed8d14cb0c7a}</Project>
+      <Name>CFDIMexico</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PreparaPagosXMLs\PreparaPagosXMLs\PreparaPagosXMLs.vbproj">
+      <Project>{6f63973b-a8b6-493a-b4cf-739f6a683576}</Project>
+      <Name>PreparaPagosXMLs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PreparaXMLs\PreparaXMLs\PreparaXMLs.vbproj">
+      <Project>{05ae9416-37e0-4903-b7df-08897753eae9}</Project>
+      <Name>PreparaXMLs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PJ.BusinessEntity\PJ.BusinessEntity.csproj">
       <Project>{D1CE2476-843E-46FC-939B-FCEC8A0887B2}</Project>
       <Name>PJ.BusinessEntity</Name>

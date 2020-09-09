@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Proyectos\ProyectoByD_Timbrado 09-09-2020_1\TestDev\Wcf-PJ\obj\Debug\Package\PackageTmp" />
+  <setAcl path="C:\Proyectos\ProyectoByD_Timbrado 09-09-2020_1\TestDev\Wcf-PJ\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Proyectos\ProyectoByD_Timbrado 09-09-2020_1\TestDev\Wcf-PJ\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

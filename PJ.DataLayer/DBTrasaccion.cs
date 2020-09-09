@@ -21,14 +21,19 @@ namespace PJ.DataLayer
         public bool ValidaConexionSQL()
         {
             bool Exitosa = false;
+
             var ConClass = new DaConnectSQL();
 
+     
             ConClass.Open();
 
-            if (ConClass.Con.State == ConnectionState.Open)
+            if (ConClass.Conex.State == ConnectionState.Open)
+            {
                 Exitosa = true;
+            }
 
             return Exitosa;
+
         }
 
         public string CreateCustomer(Customer ObjCustomer)
@@ -38,23 +43,22 @@ namespace PJ.DataLayer
             var ConClass = new DaConnectSQL();
             bool existe = false;
 
+
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.Connection = ConClass.DASQLConnection();
+
+                cmd.Connection = ConClass.myConexionSQL();
 
                 cmd.CommandType = CommandType.Text;
 
-                cmd.Transaction = ConClass.Tran;
+                cmd.Transaction = ConClass.Transac;
 
                 ConClass.Open();
+               
+                existe = validarRif(ObjCustomer.Rif, cmd);
 
-                existe = ValidarRif(ObjCustomer.Rif, cmd);
-
-                cmd.CommandText = "Insert into Customers (CustomerName, Contact, Email, Rif) " +
-                    "Values  ('" + ObjCustomer.CustomerName + "','" + ObjCustomer.Contact + "', '" + ObjCustomer.Email + "', '" + ObjCustomer.Rif + "')";
-                                          
-                cmd.Transaction = ConClass.Con.BeginTransaction();
+                cmd.Transaction = ConClass.Conex.BeginTransaction();
 
                 if (existe)
                 {
@@ -63,6 +67,10 @@ namespace PJ.DataLayer
 
                 else
                 {
+                    cmd.CommandText = "Insert into Customers " +
+                    "Values ('" + ObjCustomer.CustomerName + "','" + ObjCustomer.Contact + "', '" + ObjCustomer.Email + "', '" + ObjCustomer.Rif + "')";
+                    
+
                     cmd.ExecuteNonQuery();
 
                     cmd.Transaction.Commit();
@@ -87,57 +95,64 @@ namespace PJ.DataLayer
             return Result;
         }
 
-        public bool ValidarRif(string Rif, SqlCommand CMD)
+        public bool validarRif(string Rif, SqlCommand CMD)
         {
             Customer ExisCustomer = new Customer();
             bool Result = false;
             bool Errores = false;
 
-            CMD.CommandType = CommandType.Text;
-            CMD.Connection = CMD.Connection; 
+            //CMD.CommandType = CommandType.Text;
+            //CMD.Connection = CMD.Connection; 
             CMD.CommandText = "SELECT * FROM Customers where RIF =  '" + Rif + "' ";
 
-            SqlDataReader dr = CMD.ExecuteReader();
-
-            try
+            if (CMD.Connection.State == ConnectionState.Open)
             {
-                while (dr.Read())
+                SqlDataReader dr = CMD.ExecuteReader();
+
+                try
                 {
+                    while (dr.Read())
                     {
-                        ExisCustomer.CustomerId = dr.GetInt32(0);
-                        ExisCustomer.CustomerName = dr.GetString(1);
-                        ExisCustomer.Contact = dr.GetString(2);
-                        ExisCustomer.Email = dr.GetString(3);
-                        ExisCustomer.Rif = dr.GetString(4);
+                        {
+                            ExisCustomer.CustomerId = dr.GetInt32(0);
+                            ExisCustomer.CustomerName = dr.GetString(1);
+                            ExisCustomer.Contact = dr.GetString(2);
+                            ExisCustomer.Email = dr.GetString(3);
+                            ExisCustomer.Rif = dr.GetString(4);
+                        }
+                    }
+                    dr.Close();
+
+                    if (ExisCustomer.CustomerName != null)
+                    {
+                        Result = true;
                     }
                 }
-                dr.Close();
 
-                if (ExisCustomer.CustomerName != null)
+                catch (Exception ex)
                 {
-                    Result = true;
+
+                    Console.WriteLine("Error en la transaccion " + ex.Message);
                 }
-                       
             }
 
-       
-            catch (Exception ex)
+            else
             {
-                
-                Console.WriteLine("Error en la transaccion " + ex.Message);
+                Console.WriteLine("Error en la conexion a SQL");
             }
+
             return Result;
         }
 
-        public List<Customer>ListarCustomers([Optional] string Rif)
+        public ListCustomers ListarCustomers([Optional] string Rif)
         {
-            List<Customer> ListaCliente = new List<Customer>();
+            ListCustomers ListaCliente = new ListCustomers();
             bool Result = false;
             var ConClass = new DaConnectSQL();
             bool Errores = false;
 
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = ConClass.DASQLConnection();
+            cmd.Connection = ConClass.myConexionSQL();
 
             cmd.CommandType = CommandType.Text;
 
@@ -184,7 +199,57 @@ namespace PJ.DataLayer
             }
             return ListaCliente;
         }
+
+        public ListCustomers ListAllCustomers()
+        {
+            ListCustomers ListaCliente = new ListCustomers();
+            bool Result = false;
+            var ConClass = new DaConnectSQL();
+            bool Errores = false;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = ConClass.myConexionSQL();
+
+            cmd.CommandType = CommandType.Text;
+
+            ConClass.Open();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cmd.Connection;
+
+            cmd.CommandText = "SELECT * FROM Customers ";
+           
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            try
+            {
+                while (dr.Read())
+                {
+                    {
+                        Customer CLiente = new Customer();
+                        CLiente.CustomerId = dr.GetInt32(0);
+                        CLiente.CustomerName = dr.GetString(1);
+                        CLiente.Contact = dr.GetString(2);
+                        CLiente.Email = dr.GetString(3);
+                        CLiente.Rif = dr.GetString(4);
+
+                        ListaCliente.Add(CLiente);
+                    }
+                }
+                dr.Close();
+            }
+
+
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error en la transaccion " + ex.Message);
+            }
+            return ListaCliente;
+        }
+
     }
+
 
 
 
